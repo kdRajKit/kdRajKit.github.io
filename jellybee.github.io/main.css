@@ -1265,6 +1265,257 @@ p {
     0 0 30px rgba(139, 92, 246, 0.09);
 }
 
+.hero-video-panel.hero-carousel-panel {
+  cursor: default;
+}
+
+.hero-video-crop.controlcenter-carousel::before,
+.hero-video-crop.controlcenter-carousel::after {
+  display: none;
+}
+
+.controlcenter-carousel-viewport {
+  position: absolute;
+  inset: 0;
+}
+
+.controlcenter-carousel-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+  object-fit: contain;
+}
+
+.controlcenter-carousel-image[hidden] {
+  display: none;
+}
+
+.controlcenter-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0 0 3px;
+  place-items: center;
+  border: 1px solid rgba(238, 244, 251, 0.4);
+  border-radius: 50%;
+  background: rgba(3, 6, 10, 0.78);
+  color: #f7fbff;
+  cursor: pointer;
+  font: 400 32px/1 ui-sans-serif, system-ui, sans-serif;
+  transform: translateY(-50%);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.controlcenter-carousel-arrow:hover {
+  border-color: rgba(216, 180, 254, 0.86);
+  background: rgba(10, 6, 18, 0.95);
+}
+
+.controlcenter-carousel-arrow--previous {
+  left: 14px;
+}
+
+.controlcenter-carousel-arrow--next {
+  right: 14px;
+}
+
+.controlcenter-carousel-expand {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(238, 244, 251, 0.4);
+  border-radius: 12px;
+  background: rgba(3, 6, 10, 0.78);
+  cursor: zoom-in;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.controlcenter-carousel-expand span {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-top: 2px solid rgba(238, 244, 251, 0.9);
+  border-right: 2px solid rgba(238, 244, 251, 0.9);
+}
+
+.controlcenter-carousel-expand span::after {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid rgba(238, 244, 251, 0.9);
+  border-left: 2px solid rgba(238, 244, 251, 0.9);
+  content: "";
+}
+
+.controlcenter-carousel-expand:hover {
+  border-color: rgba(216, 180, 254, 0.86);
+  background: rgba(10, 6, 18, 0.95);
+}
+
+.controlcenter-carousel-footer {
+  position: absolute;
+  right: auto;
+  bottom: 14px;
+  left: 50%;
+  z-index: 6;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(238, 244, 251, 0.22);
+  border-radius: 999px;
+  background: rgba(3, 6, 10, 0.84);
+  color: rgba(238, 244, 251, 0.88);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(9px);
+  transform: translateX(-50%);
+}
+
+.controlcenter-carousel-position {
+  flex: none;
+  color: #d8b4fe;
+  font: 800 10px/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.controlcenter-carousel-dots {
+  display: flex;
+  flex: none;
+  gap: 5px;
+  align-items: center;
+}
+
+.controlcenter-carousel-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(238, 244, 251, 0.4);
+  cursor: pointer;
+  transition: width 150ms ease, background-color 150ms ease;
+}
+
+.controlcenter-carousel-dots button[aria-current="true"] {
+  width: 18px;
+  background: #c084fc;
+}
+
+.controlcenter-carousel:focus-visible,
+.controlcenter-carousel-expand:focus-visible,
+.controlcenter-carousel-arrow:focus-visible,
+.controlcenter-carousel-dots button:focus-visible {
+  outline: 2px solid rgba(216, 180, 254, 0.92);
+  outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .controlcenter-carousel-expand,
+  .controlcenter-carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .controlcenter-carousel-arrow--previous {
+    left: 8px;
+  }
+
+  .controlcenter-carousel-arrow--next {
+    right: 8px;
+  }
+
+  .controlcenter-carousel-footer {
+    bottom: 8px;
+    gap: 8px;
+    padding: 7px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controlcenter-carousel-expand,
+  .controlcenter-carousel-arrow,
+  .controlcenter-carousel-dots button {
+    transition: none;
+  }
+}
+
+.controlcenter-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  padding: clamp(54px, 5vw, 82px) clamp(12px, 2vw, 30px) clamp(18px, 2vw, 30px);
+  place-items: center;
+  background: rgba(2, 4, 7, 0.96);
+  backdrop-filter: blur(16px);
+}
+
+.controlcenter-fullscreen[hidden] {
+  display: none;
+}
+
+.controlcenter-fullscreen-figure {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  place-items: center;
+}
+
+.controlcenter-fullscreen-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 1px solid rgba(216, 180, 254, 0.34);
+  border-radius: 12px;
+  background: #020407;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62);
+  object-fit: contain;
+}
+
+.controlcenter-fullscreen-close {
+  position: fixed;
+  top: clamp(12px, 1.8vw, 24px);
+  right: clamp(12px, 1.8vw, 24px);
+  z-index: 1101;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0 0 3px;
+  place-items: center;
+  border: 1px solid rgba(216, 180, 254, 0.46);
+  border-radius: 50%;
+  background: rgba(10, 6, 18, 0.84);
+  color: #f7fbff;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.controlcenter-fullscreen-close:hover,
+.controlcenter-fullscreen-close:focus-visible {
+  border-color: rgba(216, 180, 254, 0.9);
+  outline: none;
+  box-shadow: 0 0 22px rgba(168, 85, 247, 0.34);
+}
+
+body.controlcenter-fullscreen-open {
+  overflow: hidden;
+}
+
 @media (max-width: 980px) {
 .hero-layout {
     grid-template-columns: 1fr;
