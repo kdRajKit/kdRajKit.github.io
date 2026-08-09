@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="JellyBee System Internals · Compiler · Part One: from typed C to a verified PIC BIN through GCC, JBIR, and KORE.">
   <meta name="twitter:image" content="https://kdrajkit.github.io/blogs/jellybeesystem-internals/compilator-internals/Rewiring-the-GCC-Compilation-Lifecycle-for-Position-Independent-Modularity/imagenes/compiler-banner-og.png">
   <meta name="twitter:image:alt" content="Rewiring the GCC Compilation Lifecycle for Position-Independent Modularity">
-  <link rel="stylesheet" href="/main.css?v=20260808-video-captions">
+  <link rel="stylesheet" href="/main.css?v=20260808-video-captions-2">
 </head>
 <body class="page-blog">
   <div class="bg-grid"></div>
@@ -40,7 +40,7 @@
         </section>
 
         <section class="paper-section" >
-          <h2>The Wormhole Between C Code and Position-Independent Code</h2>
+          <h2>The Wormhole Between C Code and Position-Independent Binary</h2>
          <p>Over the past year, I have immersed myself in the workings of the MinGW-w64 toolchain and, in particular, its core: GCC. My goal was not merely to verify that a program compiled or that a call to a Windows API worked. I needed to observe and understand every transformation applied to the code: from the moment I cross-compiled an apparently simple Win32 call, such as MessageBoxA, all the way to the syscall boundary and, when the execution path required it, the transition from user mode to ring 0.</p>
 <p>In the context of this series, that journey begins with preprocessing and continues through syntactic and semantic analysis, GCC’s intermediate representations, its transformation and optimization passes, assembly generation, COFF object construction, and, finally, the linking process that produces the resulting PE executable.</p>
 <p>When GCC is run with the diagnostic configuration used during this research, even a minimal MessageBoxA-based example can generate more than 340 dumps and intermediate artifacts. These files make it possible to inspect the state of the program at different points in the pipeline: syntax trees, GIMPLE, RTL, optimization decisions, symbol references, sections, calls, and other internal transformations. Not every dump represents an independent semantic transformation, but taken together, they provide an exceptionally detailed view of how an intention written in C ultimately becomes executable bytes.</p>
