@@ -4,22 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>_JellyBeeSystem | Offensive Engineering</title>
-  <meta name="description" content="JellyBee System Labs: offensive engineering research, advanced artifacts and PIC capabilities.">
+  <title>JellyBee System</title>
+  <meta name="description" content="JellyBee transforms typed C inside the GCC lifecycle and produces verifiable, self-contained position-independent native modules.">
+  <link rel="canonical" href="https://kdrajkit.github.io/jellybee.github.io/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="_JellyBeeSystem | Offensive Engineering">
-  <meta property="og:description" content="Offensive engineering research, advanced artifacts and PIC capabilities.">
+  <meta property="og:title" content="_JellyBeeSystem | Verifiable Position-Independent Modules">
+  <meta property="og:description" content="Typed C. Verifiable PIC modules. One identity from build to operation.">
   <meta property="og:url" content="https://kdrajkit.github.io/jellybee.github.io/">
-  <meta property="og:image" content="https://kdrajkit.github.io/jellybee.github.io/assets/init.png">
-  <meta property="og:image:alt" content="JellyBee Swarm Factory workflow preview">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="_JellyBeeSystem | Offensive Engineering">
-  <meta name="twitter:description" content="Offensive engineering research, advanced artifacts and PIC capabilities.">
-  <meta name="twitter:image" content="https://kdrajkit.github.io/jellybee.github.io/assets/init.png">
-  <link rel="stylesheet" href="main.css?v=20260810-controlcenter-titleless">
+  <meta property="og:image" content="https://kdrajkit.github.io/jellybee.github.io/assets/logo.png">
+  <meta property="og:image:alt" content="JellyBee System logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="_JellyBeeSystem | Verifiable Position-Independent Modules">
+  <meta name="twitter:description" content="Typed C. Verifiable PIC modules. One identity from build to operation.">
+  <meta name="twitter:image" content="https://kdrajkit.github.io/jellybee.github.io/assets/logo.png">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="redesign.css?v=20260825-original-shell">
+  <link rel="stylesheet" href="showcase.css?v=20260825-white-reel">
 </head>
 <body class="page-jellybee">
-  <span class="bg-grid" aria-hidden="true"></span>
   <div data-site-header="partials/header.html">
     <header class="site-header site-header--blackbox">
       <span class="jb-blackbox-grid" aria-hidden="true"></span>
@@ -43,61 +45,80 @@
     </header>
   </div>
 
-  <main class="experience-main" id="top">
-    <section class="experience-hero" aria-label="JellyBee system environments">
-      <span class="hero-aurora" aria-hidden="true"></span>
-      <section class="experience-wrap hero-layout">
-        <article class="hero-video-panel hero-video-panel--swarm" data-video-fullscreen tabindex="0" role="button" aria-label="Open SwarmFactory video fullscreen">
-          <div class="hero-video-crop hero-video-crop--native">
-            <video src="video/processed/swarmfactory-callstack-bp-web.mp4?v=20260724-opt1" poster="assets/swarmfactory-poster.webp" width="1728" height="1080" muted playsinline autoplay loop preload="metadata" loading="lazy" aria-label="SwarmFactory lifecycle video"></video>
-          </div>
-          <h2><img class="system-wordmark swarm-wordmark" src="assets/swarmfactory-wordmark.png" width="2078" height="422" alt="Swarm Factory"><small>Build environment</small></h2>
-        </article>
-        <ul class="hero-copy-block hero-copy-block--swarm">
-          <li><strong>Swarm Factory</strong> streamlines module weaponization and composition using our compiler driver <strong> JBKORE </strong> obtaining position-independent binary artifacts without prior transformation of the C code.</li>
-          <li>These artifacts are <strong>implant-independent</strong> and can be executed using <strong>minimal custom loaders</strong> comparable to those required for <strong>shellcode execution</strong>.</li>
-          <li>Provides <strong>end-to-end traceability</strong> through <strong>advanced remote debugging</strong> in <strong>Ring 3</strong>, with support for <strong>Ring 0</strong>.</li>
-        </ul>
-        <ul class="hero-copy-block hero-copy-block--control">
-          <li><strong>ControlCenter</strong> loads red-team-developed and debugged artifacts from <strong>Warehouse</strong>.</li>
-          <li>It passes <strong>parameters</strong> from the console to artifacts loaded in <strong>memory</strong>.</li>
-          <li><strong>Encrypts artifacts</strong> and their <strong>output streams</strong> to the console assigned to the implant.</li>
-          <li>It uses <strong>HTTP over TLS</strong> for infrastructure traffic and <strong>encrypted pipes</strong> between implants.</li>
-          <li>The native <strong>JellyBee implant</strong> its less than <strong>50 KB</strong>, depending on its configuration.</li>
-          <li>The <strong>routing server</strong> correlates requests through <strong>hashes</strong> without inspecting their content, supporting <strong>anonymous cloud deployment</strong>.</li>
-        </ul>
-        <article class="hero-video-panel hero-video-panel--control hero-carousel-panel">
-          <div class="hero-video-crop controlcenter-carousel" data-controlcenter-carousel tabindex="0" role="region" aria-label="ControlCenter interface screenshots" aria-roledescription="carousel">
-            <div class="controlcenter-carousel-viewport">
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/warehouse-cap.png" alt="ControlCenter Warehouse module catalog and module details" loading="eager" decoding="async">
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/multionection.png" alt="ControlCenter network graph with multiple connected Windows systems" loading="lazy" decoding="async" hidden>
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/jellybee-intelligence.png" alt="ControlCenter intelligence graph for an Active Directory domain" loading="lazy" decoding="async" hidden>
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/pic-services.png" alt="ControlCenter output from a position-independent service enumeration module" loading="lazy" decoding="async" hidden>
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/jellybee-explorer.png" alt="ControlCenter process explorer for a connected Windows host" loading="lazy" decoding="async" hidden>
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/smb-dco1.png" alt="ControlCenter file-system browser on a Windows domain controller" loading="lazy" decoding="async" hidden>
-              <img class="controlcenter-carousel-image" data-controlcenter-slide src="assets/controlcenter/dbg-internlals2.png" alt="ControlCenter process view across several connected Windows systems" loading="lazy" decoding="async" hidden>
-            </div>
-            <button class="controlcenter-carousel-expand" type="button" data-controlcenter-expand aria-label="Expand current screenshot"><span aria-hidden="true"></span></button>
-            <button class="controlcenter-carousel-arrow controlcenter-carousel-arrow--previous" type="button" data-controlcenter-previous aria-label="Previous screenshot">&#x2039;</button>
-            <button class="controlcenter-carousel-arrow controlcenter-carousel-arrow--next" type="button" data-controlcenter-next aria-label="Next screenshot">&#x203A;</button>
-            <div class="controlcenter-carousel-footer">
-              <span class="controlcenter-carousel-position"><span data-controlcenter-current>1</span>/7</span>
-              <span class="controlcenter-carousel-dots" aria-label="Choose a ControlCenter screenshot">
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 1" aria-current="true"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 2"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 3"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 4"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 5"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 6"></button>
-                <button type="button" data-controlcenter-dot aria-label="Show screenshot 7"></button>
-              </span>
-            </div>
-          </div>
-          <h2><img class="control-wordmark" src="assets/control-center-logo-transparent.png" width="1656" height="781" alt="Control Center"><small>Operations environment</small></h2>
-        </article>
-      </section>
+  <main class="jb-main" id="top">
+    <section class="jb-entry" aria-labelledby="jb-title">
+      <header>
+        <p class="jb-kicker">JELLYBEE SYSTEM</p>
+        <h1 id="jb-title">Follow to the yellow <span class="jb-title-highlight">bee</span></h1>
+        <p class="jb-title-subtitle">What happens when an implant doesn't have any evasion in it, because it has nothing to hide?</p>
+      </header>
+
+      <figure class="jb-entry-view">
+        <img src="assets/controlcenter/dcsync-output.png" width="3584" height="2238" alt="ControlCenter network topology and DCSync module output" decoding="async" fetchpriority="high">
+        <figcaption><span>Control Center</span></figcaption>
+      </figure>
+      <aside class="jb-entry-context">
+        <ol class="jb-feature-list" aria-label="JellyBee system characteristics">
+          <li>Switch the frontdoor at runtime, including from HTTP to HTTPS, also entire communication block to SMB over named pipes</li>
+          <li>Modify, add, or remove request headers on build time or runtime</li>
+          <li>Decouple the implant’s communication from the main process by moving it to another process, or remove it entirely</li>
+          <li>Hot-swap the encryption module at runtime with either a system-provided module or your own custom implementation</li>
+          <li>Position-independent execution</li>
+          <li>Typed compiler transformation</li>
+          <li>Self-contained PIC contract</li>
+          <li>Build-to-image traceability</li>
+          <li>Runtime parameterization</li>
+          <li>Reconstructed operator output</li>
+        </ol>
+        <nav class="jb-actions" aria-label="JellyBee introduction actions">
+          <a class="jb-action jb-action--primary" href="#controlcenter">Enter through operations</a>
+          <a class="jb-action" href="contact.html">Request a technical demo <span aria-hidden="true">↗</span></a>
+        </nav>
+      </aside>
+
     </section>
 
+    <section class="jb-system jb-system--control" id="controlcenter" aria-labelledby="control-title">
+      <header>
+        <img class="jb-control-logo" src="assets/control-center-logo-transparent.png" width="1656" height="781" alt="Control Center">
+        <p class="jb-kicker">OPERATIONS ENVIRONMENT</p>
+        <h2 id="control-title">Fast as a bee, fluid as a jellyfish.</h2>
+        <p>Sometime less options brings you more, your windows low level skills and offensive imagation will be the only limit</header>
+
+      <ol class="jb-screen-reel" aria-label="ControlCenter operational views">
+        <li><figure><img src="assets/controlcenter/dcsync-output.png" width="3584" height="2238" alt="ControlCenter network topology and DCSync module output" loading="lazy" decoding="async"><figcaption><span>01</span> PIC / DCSync output</figcaption></figure></li>
+        <li><figure><img src="assets/controlcenter/domain-intelligence.png" width="3600" height="2272" alt="ControlCenter Active Directory intelligence graph and process explorer" loading="lazy" decoding="async"><figcaption><span>02</span> Intelligence / domain relationships</figcaption></figure></li>
+        <li><figure><img src="assets/controlcenter/encrypted-pic-processes.png" width="3600" height="2272" alt="ControlCenter encrypted PIC execution and process explorer" loading="lazy" decoding="async"><figcaption><span>03</span> Runtime / encrypted PIC execution</figcaption></figure></li>
+        <li><figure><img src="assets/controlcenter/module-delivery.png" width="3420" height="2134" alt="ControlCenter module delivery from the listener to the Windows session" loading="lazy" decoding="async"><figcaption><span>04</span> Delivery / module transfer</figcaption></figure></li>
+        <li><figure><img src="assets/controlcenter/system-session.png" width="3298" height="2116" alt="ControlCenter elevated Windows system session and Kerberos ticket output" loading="lazy" decoding="async"><figcaption><span>05</span> Session / system context</figcaption></figure></li>
+      </ol>
+      <p class="jb-reel-note"><span aria-hidden="true">←</span> Drag or scroll through the operational surface <span aria-hidden="true">→</span></p>
+    </section>
+
+    <section class="jb-system jb-system--swarm" id="swarmfactory" aria-labelledby="swarm-title">
+      <header>
+        <img class="jb-swarm-logo" src="assets/swarmfactory-wordmark.png" width="2078" height="422" alt="Swarm Factory">
+        <p class="jb-kicker">BUILD ENVIRONMENT</p>
+        <h2 id="swarm-title">The position independent artifact development taken to another level</h2>
+        <p>SwarmFactory brings next-level abstraction possibilities to the red team in positon independet execution chains</header>
+
+      <div class="jb-swarm-gallery">
+  
+        <figure class="jb-swarm-shot">
+          <img src="assets/swarmfactory-project-import.png" width="3584" height="2240" alt="SwarmFactory importing a C project and displaying its source symbols" loading="lazy" decoding="async">
+          <figcaption>Swarm Factory</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="jb-demo" id="demo" aria-labelledby="demo-title">
+      <p class="jb-kicker">GUIDED SYSTEM DEMO</p>
+      <h2 id="demo-title">The rest is better demonstrated.</h2>
+      <p>Book a guided demo and get information about the terms and conditions of the free license.</p> <nav class="jb-actions" aria-label="Demo actions">
+        <a class="jb-action jb-action--primary" href="contact.html">Request technical demo</a>
+        <a class="jb-action" href="../blogs/jellybeesystem-internals/">Read selected internals <span aria-hidden="true">↗</span></a>
+      </nav>
+    </section>
   </main>
 
   <div data-site-footer="partials/footer.html">
@@ -113,17 +134,7 @@
       </section>
     </footer>
   </div>
-  <aside class="controlcenter-fullscreen" data-controlcenter-overlay hidden aria-modal="true" role="dialog" aria-label="Expanded ControlCenter screenshot">
-    <button class="controlcenter-fullscreen-close" type="button" data-controlcenter-overlay-close aria-label="Close expanded screenshot">×</button>
-    <figure class="controlcenter-fullscreen-figure">
-      <img data-controlcenter-overlay-image alt="">
-    </figure>
-  </aside>
-  <aside class="video-fullscreen" data-video-overlay hidden aria-modal="true" role="dialog" aria-label="Expanded video player">
-    <button class="video-fullscreen-close" type="button" data-video-close aria-label="Close expanded video">×</button>
-    <video data-video-overlay-player controls playsinline></video>
-  </aside>
-  <script src="experience.js?v=20260810-controlcenter-titleless"></script>
+
   <script src="../assets/site.js?v=20260805-auto-hide-header" data-root="../"></script>
 </body>
 </html>
