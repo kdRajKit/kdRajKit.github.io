@@ -95,7 +95,7 @@
 <p>Modularity does not eliminate that telemetry. It allows reducing the content that remains incorporated into the implant and loading each capability when it is needed.</p>
 <p>Within my research, complete modularity is one of the lines I consider most suitable for this model. </p>
 <p>The trend I analyze is the reduction of permanent dependencies and the separation between the implant, the capabilities and the mechanism that loads them.</p>
-<p>Raphael Mudge is the developer among others of Cobalt Strike, this command and control software feeds the beacon with the well-known Beacon Object Files or BOF, these allow operators to develop in a comfortable way something similar to a personal post-exploitation module which you will be able to execute within the implant context in any of the interconnected beacons.&#x20;</p>
+<p>Raphael Mudge is the developer of Cobalt Strike, this command and control software feeds the beacon with the well-known Beacon Object Files or BOF, these allow operators to develop in a comfortable way something similar to a personal post-exploitation module which you will be able to execute within the implant context in any of the interconnected beacons.&#x20;</p>
 <p>This architecture changed the course of offensive exercises more than 5 years ago, since until then writing to disk or starting new processes again and again was inevitable.</p>
 <p>I mark this last part as a personal conclusion based on my knowledge, I never write personal conclusions if they are not perfectly demonstrated, but for this paragraph I will make an exception:</p>
 <p>Currently due to the extremely rapid evolution in security defenses, the architecture has been asking for total modularity in the implant during every day that the offensive exercise lasts. However the Beacon and BOF architecture makes those modules that you can easily develop dependent on Beacon, which ends up limiting the operator's maneuverability and the implementation of the abstract attack chain that requires a fluid and volatile concatenation in memory of the phases of each attack chain.</p>
@@ -108,7 +108,7 @@
 <a href="imagenes/bof-execution.png" target="_blank" rel="noopener noreferrer" aria-label="Open the BOF diagram at full size">
 <img src="imagenes/bof-execution.png?v=20260909-drawio-export" width="2606" height="2407" alt="A loader first places the complete beacon.dll in the target process; then the BOF reaches the resident Beacon, which allocates memory, resolves DFR, links its API, applies relocations and calls go" loading="lazy">
 </a>
-<figcaption><strong>Figure 1.</strong> Beacon materializes BOF.</figcaption>
+<figcaption><strong>Figure 1.</strong> Beacon loads BOF.</figcaption>
 </figure>
 <p>A Beacon Object File is a COFF object built to execute within the Beacon contract.  it can use a limited set of functions provided by Beacon and declare external APIs through DFR.</p>
 <p>Beacon is the Cobalt Strike implant. It can execute in the process where it was started or remain hosted in another process through the selected artifact, loader or injection mechanism. </p>
@@ -234,23 +234,13 @@ Value of the symbol</code></pre>
 <h3>The standard BOF needs a loader inside the target PID</h3>
 <p>Copying the <code>.o</code> file and jumping to its first byte does not execute a BOF. The target still has to lay out the sections, prepare the uninitialized data, apply the relocations, resolve each external symbol and locate <code>go</code>..</p>
 <div class="code-file-caption" aria-label="Remote preparation of a standard BOF"><span class="code-file-icon" aria-hidden="true"><span>&lt;/&gt;</span></span><span class="code-file-name"><strong>REMOTE BOF</strong> · operations before <code>go</code></span></div>
-<pre class="paper-pre"><code class="language-plaintext">COFF + arguments
-    ↓
-resident Beacon or compatible BOF loader
-    ↓
-lay out sections and prepare BSS
-    ↓
-resolve Beacon APIs and DFR inside the target PID
-    ↓
-apply relocations and locate go
-    ↓
-go(args, alen)</code></pre>
+
 <p>If the target process already contains another Beacon, that Beacon provides its own loader, its internal APIs and its output channel. If it does not contain Beacon, the remote runtime must incorporate a COFF loader and a compatible implementation of each Beacon API used. </p>
 <p>Output also belongs to the runtime contract. <code>BeaconPrintf</code> and <code>BeaconOutput</code> only return data to the operator when a Beacon that implements them exists. An independent loader must replace them with its own buffer or return channel.</p>
 </section>
 
 <section class="paper-section" id="crystal-palace">
-<h2>Crystal Palace Linker Engineering and the new era of position dark hole offsensive 1</h2>
+<h2>Crystal Palace Linker and the new era of the position independent offsensive chains 1</h2>
 <figure class="paper-figure paper-figure--diagram paper-figure--lifecycle">
 <a href="imagenes/bof-pic-execution.png" target="_blank" rel="noopener noreferrer" aria-label="Open the BOF-PIC execution diagram at full size">
 <img src="imagenes/bof-pic-execution.png?v=20260909-drawio-export" width="2092" height="2964" alt="The injector delivers out.bin to the target process; the runner materializes the PICO derived from the BOF and connects its imports to local implementations in the same process" loading="lazy">
@@ -267,17 +257,7 @@ go(args, alen)</code></pre>
 <h3>The PICO runner must close its dependencies before crossing</h3>
 <p>The source process can use <code>BeaconInjectProcess</code> or another runtime to move <code>out.bin</code>, but the injection function does not prepare the embedded BOF. Before the transfer, <code>loader.spec</code> has to have produced an outer PIC with a valid entry at offset zero, incorporate <code>PicoLoad</code> and declare all the functions that the PICO will receive through <code>BOFIMPORTS</code>.</p>
 <div class="code-file-caption" aria-label="Remote preparation of out.bin"><span class="code-file-icon" aria-hidden="true"><span>&lt;/&gt;</span></span><span class="code-file-name"><strong>REMOTE OUT.BIN</strong> · two entries inside the target PID</span></div>
-<pre class="paper-pre"><code class="language-plaintext">copy out.bin and set its executable protection
-    ↓
-base + 0 → go() of the PIC runner
-    ↓
-run_bof prepares BOFIMPORTS and memory for code/data
-    ↓
-PicoLoad consumes the PICO and its directives
-    ↓
-PicoEntryPoint → dstCode + entryAddress
-    ↓
-BOFMAIN(NULL, 0)</code></pre>
+
 <p>The target does not need a complete Beacon because the runner carries the PICO loader and the implementations merged by linking. It does need each pending import to have a valid provider within its own address space. The <code>BeaconOutput</code> in this example ends in <code>dprintf</code>; retrieving that output from another PID requires a shared buffer, a later read or an IPC channel added by the runtime.</p>
 <p>The compiler has already made decisions before Crystal Palace receives the object. It has already selected instructions, created sections, generated symbols and emitted the corresponding relocations.</p>
 <p>If an instruction located at <code>P</code> references a string located at <code>S</code>, it can write:</p>
